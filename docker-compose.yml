@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+    nodejs:
+        container_name: nodejs
+        build:
+            context: .
+            dockerfile: ./docker/nodejs/Dockerfile
+        user: node
+        ports:
+          - 3000:3000
+        volumes:
+          - ./:/var/www/app
+        networks:
+          - app
+networks:
+    app:
+        driver: bridge
+
+volumes:
+    data:
+        driver: local
